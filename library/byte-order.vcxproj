@@ -84,26 +84,26 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <OutDir>$(SolutionDir)products\$(Platform.toLower())\$(Configuration.toLower())\</OutDir>
-    <IntDir>$(SolutionDir)intermediates\$(Platform.toLower())\$(Configuration.toLower())\</IntDir>
+    <OutDir>$(SolutionDir)products\$(ProjectName)\$(Platform.toLower())\$(Configuration.toLower())\</OutDir>
+    <IntDir>$(SolutionDir)intermediates\$(ProjectName)\$(Platform.toLower())\$(Configuration.toLower())\</IntDir>
     <TargetName>byte-order</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <OutDir>$(SolutionDir)products\$(Platform.toLower())\$(Configuration.toLower())\</OutDir>
-    <IntDir>$(SolutionDir)intermediates\$(Platform.toLower())\$(Configuration.toLower())\</IntDir>
+    <OutDir>$(SolutionDir)products\$(ProjectName)\$(Platform.toLower())\$(Configuration.toLower())\</OutDir>
+    <IntDir>$(SolutionDir)intermediates\$(ProjectName)\$(Platform.toLower())\$(Configuration.toLower())\</IntDir>
     <TargetName>byte-order</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <OutDir>$(SolutionDir)products\$(Platform.toLower())\$(Configuration.toLower())\</OutDir>
-    <IntDir>$(SolutionDir)intermediates\$(Platform.toLower())\$(Configuration.toLower())\</IntDir>
+    <OutDir>$(SolutionDir)products\$(ProjectName)\$(Platform.toLower())\$(Configuration.toLower())\</OutDir>
+    <IntDir>$(SolutionDir)intermediates\$(ProjectName)\$(Platform.toLower())\$(Configuration.toLower())\</IntDir>
     <TargetName>byte-order</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <IntDir>$(SolutionDir)intermediates\$(Platform)\$(Configuration.toLower())\</IntDir>
-    <OutDir>$(SolutionDir)products\$(Platform)\$(Configuration.toLower())\</OutDir>
+    <IntDir>$(SolutionDir)intermediates\$(ProjectName)\$(Platform.toLower())\$(Configuration.toLower())\</IntDir>
+    <OutDir>$(SolutionDir)products\$(ProjectName)\$(Platform.toLower())\$(Configuration.toLower())\</OutDir>
     <TargetName>byte-order</TargetName>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
