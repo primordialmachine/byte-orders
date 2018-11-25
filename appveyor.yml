@@ -1,0 +1,22 @@
+# Copyright (c) 2018 Michael Heilmann. All rights reserved.
+clone_depth: 1
+image: Visual Studio 2017 # Build worker image (VM template)
+branches:
+  only:
+    - master
+    - develop
+platform:
+  - x86
+  - x64
+configuration:
+  - Debug
+  - Release
+install:
+before_build:
+build:
+  parallel: true          # Enable parallel builds.
+  project: solution.sln   # Path to Visual Studio solution.
+test_script:
+matrix:
+  fast_finish: true       # If one matrix entry fails, all entries fails.
+notifications:
