@@ -8,61 +8,39 @@
 \usepackage[margin=0.75in]{geometry}
 \usepackage{amsmath,amssymb,amsfonts}
 
-\makeatletter
+\input{common}
 
-% Redefine author.
-\def\author#1{\gdef\@author{#1}}
-\def\@author{\@latex@warning@no@line{No \noexpand\author given}}
-% Redefine title.
-\def\email#1{\gdef\@email{#1}}
-\def\@email{\@latex@warning@no@line{No \noexpand\email given}}
-% Redefine organization.
-\def\organization#1{\gdef\@organization{#1}}
-\def\@organization{\@latex@warning@no@line{No \noexpand\organization given}}
-% "libraryname" and "libraryversion".
-\def\libraryname#1{\gdef\@libraryname{#1}}
-\def\@libraryname{\@latex@warning@no@line{No \noexpand\libraryname given}}
-\def\libraryversion#1{\gdef\@libraryversion{#1}}
-\def\@libraryversion{\@latex@warning@no@line{No \noexpand\libraryversion given}}
+\SetOrganization{Primordial Machine's}
+\SetLibraryName{Byte Orders Library}
+\SetLibraryVersion{v1.0}
+\SetLibraryRepository{https://github.com/primordialmachine/byte-orders}
+\SetAuthor{Michael Heilmann}
+\SetEmail{michaelheilmann@primordialmachine.com}
 
-\def\maketitle{%
-\noindent\makebox[\textwidth]{%
-	\uppercase{{\@organization} {\@libraryname} {\@libraryversion}}%
-	\hfill
-	\uppercase{{\@author} {(\href{\@email}{\@email})}}%
-}%
-}
-
-\makeatother
-
-\organization{Primordial Machine's}
-\libraryname{Byte Order Library}
-\libraryversion{v1.0}
-\author{Michael Heilmann}
-\email{michaelheilmann@primordialmachine.com}
 \begin{document}
 \lstset{language=C++,
   basicstyle=\footnotesize, % reduce the font size.
   showstringspaces=false    % do not display "squat-u" for whitespace.
 }
 \maketitle
+
 \section{Synopsis}
 C++ 17 library providing Byte order detection. 
 The library is made available publicly on 
-\href{https://github.com/primordialmachine/byte-order}{Github}
+\href{\GetLibraryRepository}{Github}
 under the
-\href{https://github.com/primordialmachine/byte-order/blob/master/LICENSE}{MIT License}.
+\href{\GetLibraryRepository/blob/master/LICENSE}{MIT License}.
 
 \section{Limitations and Restrictions}
 The library officially only supports Visual Studio 2017 and Windows 10.
 The Byte Order for Windows 10 is always Little Endian.
 
 \section{Introductory example}
-To determine target environment's Byte order, evaluate the constant expression function \lstinline{get_byte_order}`
-which returns an enum class element from the \lstinline{byte_order} enum class.
+The following program determines the Byte order and prints the result.
+%The folder \href{\GetLibraryRepository/blob/master/example} contains example programs.
 
 \begin{lstlisting}
-#include "primordialmachine/byte_order/include.hpp"
+#include "primordialmachine/byte_orders/include.hpp"
 #include <stdlib.h>
 
 int main(int argc, char **argv) {
@@ -95,7 +73,7 @@ If the Byte order can not be determined, a compile-time error is raised i.e. the
 
 \section{Building under Visual Studio 2017}
 \begin{enumerate}
-\item Open the solution \verb+byte-order.sln+ in Microsoft Visual Studio 2017.
+\item Open the solution \texttt{solution.sln} in Microsoft Visual Studio 2017.
 \item Batch build everything.
 \item The folder \verb+packages+ contains the distribution of the library i.e. include files and the
       static libraries for
@@ -110,35 +88,36 @@ If the Byte order can not be determined, a compile-time error is raised i.e. the
   \begin{enumerate}
     \item the include path
 \begin{verbatim}
-[library home]/primordialmachine/byte-order/
+[library home]/primordialmachine/byte-orders/
 $(Platform.toLower())/$(Configuration.toLower())/includes
 \end{verbatim}
 	and
     \item the library path
 \begin{verbatim}
-[library home]/primordialmachine/byte-order/
+[library home]/primordialmachine/byte-orders/
 $(Platform.toLower())/$(Configuration.toLower())/libraries
 \end{verbatim}
     to your project.
 \end{enumerate}
-\item Link your project with the library \verb+byte-order.lib+.
-\item Add the include directive \lstinline{#include "primordialmachine/byte_order/include.hpp"} where appropriate.
+\item Link your project with the library \verb+byte-orders.lib+.
+\item Add the include directive \lstinline{#include "primordialmachine/byte_orders/include.hpp"} where appropriate.
 \item You can now use the functionality provided by the library.
 \end{enumerate}
 
 \section{Library Interface Documentation}
-\subsection{namespace primordialmachine}
+\subsection{\texttt{namespace primordialmachine}}
 The namespace this library is adding its declarations/definitions to.
 The added namespace elements are documented below.
-\subsection{enum class byte\_order}
+
+\subsection{\texttt{enum class byte\_order}}
 An enum class of the Byte orders known to this library.
 The contained enum class elements are documented below.
 \begin{enumerate}
-\item \lstinline{little_endian} enum class element denoting Little Endian Byte order.
-\item \lstinline{big_endian} enum class element denoting Big Endian Byte order.
+\item \texttt{little\_endian} enum class element denoting Little Endian Byte order.
+\item \texttt{big\_endian} enum class element denoting Big Endian Byte order.
 \end{enumerate}
 
-\subsection{byte\_order get\_byte\_order()}
+\subsection{\texttt{byte\_order get\_byte\_order()}}
 A parameterless constant expression function getting the target environment's Byte order. It returns
 a value of type \lstinline{byte_order} denoting the target environment's Byte order.     If the Byte
 order can not be determined, a compile-time error is raised i.e. the program will not       compile.

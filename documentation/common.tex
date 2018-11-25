@@ -1,0 +1,50 @@
+% Copyright (c) 2018 Michael Heilmann. All rights reserved.
+
+\makeatletter
+
+% "(Get|Set)Author".
+% The name of the author.
+\def\SetAuthor#1{\gdef\@author{#1}}
+\def\@author{\@latex@warning@no@line{No author given}}
+\def\GetAuthor{\@author}
+
+% "(Get|Set)Email".
+% The email (address) of the author.
+\def\SetEmail#1{\gdef\@email{#1}}
+\def\@email{\@latex@warning@no@line{No email given}}
+\def\GetEmail{\@email}
+
+% "(Get|Set)Organization".
+% The organization the library is published by.
+\def\SetOrganization#1{\gdef\@organization{#1}}
+\def\@organization{\@latex@warning@no@line{No organization given}}
+\def\GetOrganization{\@organization}
+
+% "(Get|Set)LibraryName".
+% The name of the library.
+\def\SetLibraryName#1{\gdef\@libraryName{#1}}
+\def\@libraryName{\@latex@warning@no@line{No library name given}}
+\def\GetLibraryName{\@libraryName}
+
+% "(Get|Set)LibraryVersion".
+% The version of the library.
+\def\SetLibraryVersion#1{\gdef\@libraryVersion{#1}}
+\def\@libraryVersion{\@latex@warning@no@line{No library version given}}
+\def\GetLibraryVersion{\@libraryVersion}
+
+% "(Get|Set)LibraryRepository".
+% The repository (url) of the library.
+\def\SetLibraryRepository#1{\gdef\@libraryRepository{#1}}
+\def\@libraryrepository{\@latex@warning@no@line{No library repository given}}
+\def\GetLibraryRepository{\@libraryRepository}
+
+% Define "maketitle".
+\def\maketitle{%
+  \noindent\makebox[\textwidth]{%
+	\uppercase{{\GetOrganization} {\GetLibraryName} {\GetLibraryVersion}}%
+	\hfill
+	\uppercase{{\GetAuthor} {(\href{mailto:\GetEmail}{\GetEmail})}}%
+  }%
+}
+
+\makeatother
