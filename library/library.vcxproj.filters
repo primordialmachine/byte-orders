@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Quelldateien">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Headerdateien">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Headerdateien\byte_orders">
+      <UniqueIdentifier>{e51f2d12-d1e5-476a-84e9-0ddada331287}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Quelldateien\byte_orders">
+      <UniqueIdentifier>{fdf6bb1e-3f21-49aa-92b7-3c713fd9ea90}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="includes\primordialmachine\byte_orders\byte_order.hpp">
+      <Filter>Headerdateien\byte_orders</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\primordialmachine\byte_orders\include.hpp">
+      <Filter>Headerdateien\byte_orders</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="sources\primordialmachine\byte_orders\byte_order.cpp">
+      <Filter>Quelldateien\byte_orders</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

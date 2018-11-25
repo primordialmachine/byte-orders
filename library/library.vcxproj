@@ -19,11 +19,11 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="sources\primordialmachine\byte_order\byte_order.cpp" />
+    <ClCompile Include="sources\primordialmachine\byte_orders\byte_order.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="includes\primordialmachine\byte_order\byte_order.hpp" />
-    <ClInclude Include="includes\primordialmachine\byte_order\include.hpp" />
+    <ClInclude Include="includes\primordialmachine\byte_orders\byte_order.hpp" />
+    <ClInclude Include="includes\primordialmachine\byte_orders\include.hpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
@@ -31,7 +31,7 @@
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>byteorder</RootNamespace>
     <WindowsTargetPlatformVersion>10.0.17134.0</WindowsTargetPlatformVersion>
-    <ProjectName>byte-order-library</ProjectName>
+    <ProjectName>library</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -84,27 +84,27 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <OutDir>$(SolutionDir)products\$(ProjectName)\$(Platform.toLower())\$(Configuration.toLower())\</OutDir>
-    <IntDir>$(SolutionDir)intermediates\$(ProjectName)\$(Platform.toLower())\$(Configuration.toLower())\</IntDir>
-    <TargetName>byte-order</TargetName>
+    <OutDir>$(SolutionDir)products\$(PackageName)\$(Platform.toLower())\$(Configuration.toLower())\</OutDir>
+    <IntDir>$(SolutionDir)intermediates\$(PackageName)\$(Platform.toLower())\$(Configuration.toLower())\</IntDir>
+    <TargetName>$(PackageName)</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <OutDir>$(SolutionDir)products\$(ProjectName)\$(Platform.toLower())\$(Configuration.toLower())\</OutDir>
-    <IntDir>$(SolutionDir)intermediates\$(ProjectName)\$(Platform.toLower())\$(Configuration.toLower())\</IntDir>
-    <TargetName>byte-order</TargetName>
+    <OutDir>$(SolutionDir)products\$(PackageName)\$(Platform.toLower())\$(Configuration.toLower())\</OutDir>
+    <IntDir>$(SolutionDir)intermediates\$(PackageName)\$(Platform.toLower())\$(Configuration.toLower())\</IntDir>
+    <TargetName>$(PackageName)</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <OutDir>$(SolutionDir)products\$(ProjectName)\$(Platform.toLower())\$(Configuration.toLower())\</OutDir>
-    <IntDir>$(SolutionDir)intermediates\$(ProjectName)\$(Platform.toLower())\$(Configuration.toLower())\</IntDir>
-    <TargetName>byte-order</TargetName>
+    <OutDir>$(SolutionDir)products\$(PackageName)\$(Platform.toLower())\$(Configuration.toLower())\</OutDir>
+    <IntDir>$(SolutionDir)intermediates\$(PackageName)\$(Platform.toLower())\$(Configuration.toLower())\</IntDir>
+    <TargetName>$(PackageName)</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <IntDir>$(SolutionDir)intermediates\$(ProjectName)\$(Platform.toLower())\$(Configuration.toLower())\</IntDir>
-    <OutDir>$(SolutionDir)products\$(ProjectName)\$(Platform.toLower())\$(Configuration.toLower())\</OutDir>
-    <TargetName>byte-order</TargetName>
+    <IntDir>$(SolutionDir)intermediates\$(PackageName)\$(Platform.toLower())\$(Configuration.toLower())\</IntDir>
+    <OutDir>$(SolutionDir)products\$(PackageName)\$(Platform.toLower())\$(Configuration.toLower())\</OutDir>
+    <TargetName>$(PackageName)</TargetName>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -129,8 +129,8 @@
       <Command>xcopy $(ProjectDir)includes $(PackageDir)includes\ /S /E /Y
 xcopy $(OutDir)*.lib $(PackageDir)libraries\ /S /E /Y</Command>
       <Message>Create package.</Message>
-      <Outputs>$(PackageDir)includes\primordialmachine\byte_order\byte_order.hpp;$(PackageDir)includes\primordialmachine\byte_order\include.hpp</Outputs>
-      <Inputs>$(ProjectDir)includes\primordialmachine\byte_order\byte_order.hpp;$(ProjectDir)includes\primordialmachine\byte_order\include.hpp</Inputs>
+      <Outputs>$(PackageDir)includes\primordialmachine\byte_orders\byte_order.hpp;$(PackageDir)includes\primordialmachine\byte_orders\include.hpp</Outputs>
+      <Inputs>$(ProjectDir)includes\primordialmachine\byte_orders\byte_order.hpp;$(ProjectDir)includes\primordialmachine\byte_orders\include.hpp</Inputs>
     </CustomBuildStep>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -156,8 +156,8 @@ xcopy $(OutDir)*.lib $(PackageDir)libraries\ /S /E /Y</Command>
       <Command>xcopy $(ProjectDir)includes $(PackageDir)includes\ /S /E /Y
 xcopy $(OutDir)*.lib $(PackageDir)libraries\ /S /E /Y</Command>
       <Message>Create package.</Message>
-      <Outputs>$(PackageDir)includes\primordialmachine\byte_order\byte_order.hpp;$(PackageDir)includes\primordialmachine\byte_order\include.hpp</Outputs>
-      <Inputs>$(ProjectDir)includes\primordialmachine\byte_order\byte_order.hpp;$(ProjectDir)includes\primordialmachine\byte_order\include.hpp</Inputs>
+      <Outputs>$(PackageDir)includes\primordialmachine\byte_orders\byte_order.hpp;$(PackageDir)includes\primordialmachine\byte_orders\include.hpp</Outputs>
+      <Inputs>$(ProjectDir)includes\primordialmachine\byte_orders\byte_order.hpp;$(ProjectDir)includes\primordialmachine\byte_orders\include.hpp</Inputs>
     </CustomBuildStep>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -187,8 +187,8 @@ xcopy $(OutDir)*.lib $(PackageDir)libraries\ /S /E /Y</Command>
       <Command>xcopy $(ProjectDir)includes $(PackageDir)includes\ /S /E /Y
 xcopy $(OutDir)*.lib $(PackageDir)libraries\ /S /E /Y</Command>
       <Message>Create package.</Message>
-      <Outputs>$(PackageDir)includes\primordialmachine\byte_order\byte_order.hpp;$(PackageDir)includes\primordialmachine\byte_order\include.hpp</Outputs>
-      <Inputs>$(ProjectDir)includes\primordialmachine\byte_order\byte_order.hpp;$(ProjectDir)includes\primordialmachine\byte_order\include.hpp</Inputs>
+      <Outputs>$(PackageDir)includes\primordialmachine\byte_orders\byte_order.hpp;$(PackageDir)includes\primordialmachine\byte_orders\include.hpp</Outputs>
+      <Inputs>$(ProjectDir)includes\primordialmachine\byte_orders\byte_order.hpp;$(ProjectDir)includes\primordialmachine\byte_orders\include.hpp</Inputs>
     </CustomBuildStep>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -218,8 +218,8 @@ xcopy $(OutDir)*.lib $(PackageDir)libraries\ /S /E /Y</Command>
       <Command>xcopy $(ProjectDir)includes $(PackageDir)includes\ /S /E /Y
 xcopy $(OutDir)*.lib $(PackageDir)libraries\ /S /E /Y</Command>
       <Message>Create package.</Message>
-      <Outputs>$(PackageDir)includes\primordialmachine\byte_order\byte_order.hpp;$(PackageDir)includes\primordialmachine\byte_order\include.hpp</Outputs>
-      <Inputs>$(ProjectDir)includes\primordialmachine\byte_order\byte_order.hpp;$(ProjectDir)includes\primordialmachine\byte_order\include.hpp</Inputs>
+      <Outputs>$(PackageDir)includes\primordialmachine\byte_orders\byte_order.hpp;$(PackageDir)includes\primordialmachine\byte_orders\include.hpp</Outputs>
+      <Inputs>$(ProjectDir)includes\primordialmachine\byte_orders\byte_order.hpp;$(ProjectDir)includes\primordialmachine\byte_orders\include.hpp</Inputs>
     </CustomBuildStep>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

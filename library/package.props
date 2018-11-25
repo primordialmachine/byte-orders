@@ -2,13 +2,18 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ImportGroup Label="PropertySheets" />
   <PropertyGroup Label="UserMacros">
-    <PackageDir>$(SolutionDir)packages\primordialmachine\byte-order\$(Platform.toLower())\$(Configuration.toLower())\</PackageDir>
+    <PackageName>byte-orders</PackageName>
+    <PackageDir>$(SolutionDir)packages\primordialmachine\$(PackageName)\$(Platform.toLower())\$(Configuration.toLower())\</PackageDir>
   </PropertyGroup>
   <PropertyGroup>
     <_PropertySheetDisplayName>Package</_PropertySheetDisplayName>
   </PropertyGroup>
   <ItemDefinitionGroup />
   <ItemGroup>
+    <BuildMacro Include="PackageName">
+      <Value>$(PackageName)</Value>
+      <EnvironmentVariable>true</EnvironmentVariable>
+    </BuildMacro>
     <BuildMacro Include="PackageDir">
       <Value>$(PackageDir)</Value>
     </BuildMacro>

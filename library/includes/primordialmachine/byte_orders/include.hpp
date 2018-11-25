@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 //
-// Primordial Machine's Byte Order Library
+// Primordial Machine's Byte Orders Library
 // Copyright (C) 2017-2018 Michael Heilmann
 //
 // This software is provided 'as-is', without any express or implied warranty.
