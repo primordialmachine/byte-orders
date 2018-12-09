@@ -25,4 +25,4 @@
 
 #pragma once
 
-#include "primordialmachine/byte_order/byte_order.hpp"
+#include "primordialmachine/byte_orders/byte_order.hpp"
