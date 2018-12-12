@@ -3,7 +3,7 @@
   <ImportGroup Label="PropertySheets" />
   <PropertyGroup Label="UserMacros">
     <PackageName>byte-orders</PackageName>
-    <PackageDir>$(SolutionDir)packages\primordialmachine\$(PackageName)\$(Platform.toLower())\$(Configuration.toLower())\</PackageDir>
+    <PackageDir>$(SolutionDir)packages\primordialmachine\$(PackageName)\$(PlatformTarget.toLower())\$(Configuration.toLower())\</PackageDir>
   </PropertyGroup>
   <PropertyGroup>
     <_PropertySheetDisplayName>Package</_PropertySheetDisplayName>

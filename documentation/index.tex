@@ -89,13 +89,13 @@ If the Byte order can not be determined, a compile-time error is raised i.e. the
     \item the include path
 \begin{verbatim}
 [library home]/primordialmachine/byte-orders/
-$(Platform.toLower())/$(Configuration.toLower())/includes
+$(PlatformTarget.toLower())/$(Configuration.toLower())/includes
 \end{verbatim}
 	and
     \item the library path
 \begin{verbatim}
 [library home]/primordialmachine/byte-orders/
-$(Platform.toLower())/$(Configuration.toLower())/libraries
+$(PlatformTarget.toLower())/$(Configuration.toLower())/libraries
 \end{verbatim}
     to your project.
 \end{enumerate}
