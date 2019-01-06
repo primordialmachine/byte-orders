@@ -1,4 +1,20 @@
 % Copyright (c) 2018 Michael Heilmann. All rights reserved.
+\usepackage[utf8]{inputenc}
+\usepackage{textcomp} % for \textlangle and \textrangle macros
+\usepackage{xcolor}
+%
+\usepackage{datetime}
+%
+\usepackage{tabularx} % for tabularx environment
+\usepackage{multirow}
+%
+\usepackage{lmodern}
+\usepackage{microtype}
+%
+\usepackage{graphicx}
+\usepackage[colorlinks]{hyperref}
+\usepackage[margin=0.75in]{geometry}
+\usepackage{amsmath,amssymb,amsfonts}
 
 \makeatletter
 
@@ -26,6 +42,41 @@
 \def\@libraryName{\@latex@warning@no@line{No library name given}}
 \def\GetLibraryName{\@libraryName}
 
+% "(Get|Set)LibraryIncludesPath".
+% The includes directory path.
+% Example: "primordialmachine/arithmetic-functors/$(PlatformTarget.toLower())/$(Configuration.toLower())/includes"
+\def\SetLibraryIncludesDirectoryPath#1{\gdef\@libraryIncludesDirectoryPath{#1}}
+\def\@libraryIncludesDirectoryPath{\@latex@warning@no@line{No library includes directory path given}}
+\def\GetLibraryIncludesDirectoryPath{\@libraryIncludesDirectoryPath}
+
+% "(Get|Set)LibraryIncludeFile".
+% The include file name of the library.
+% Example: "include.hpp".
+\def\SetLibraryIncludeFileName#1{\gdef\@libraryIncludeFileName{#1}}
+\def\@libraryIncludeFileName{\@latex@warning@no@line{No library include file name given}}
+\def\GetLibraryIncludeFileName{\@libraryIncludeFileName}
+
+% "(Get|Set)LibraryIncludeDirectiveFilePath".
+% The library include directive file path.
+% Example: "primordialmachine/arithmetic_functors/include.hpp".
+\def\SetLibraryIncludeDirectiveFilePath#1{\gdef\@libraryIncludeDirectiveFilePath{#1}}
+\def\@libraryIncludeDirectiveFilePath{\@latex@warning@no@line{No library include directive file path}}
+\def\GetLibraryIncludeDirectiveFilePath{\@libraryIncludeDirectiveFilePath}
+
+% "(Get|Set)LibraryStaticLibrariesDirectoryPath".
+% The static libraries directory path.
+% Example: "primordialmachine/arithmetic-functors/$(PlatformTarget.toLower())/$(Configuration.toLower())/libraries".
+\def\SetLibraryStaticLibrariesDirectoryPath#1{\gdef\@libraryStaticLibrariesDirectoryPath{#1}}
+\def\@libraryStaticLibrariesDirectoryPath{\@latex@warning@no@line{No library static libraries directory path given}}
+\def\GetLibraryStaticLibrariesDirectoryPath{\@libraryStaticLibrariesDirectoryPath}
+
+% "(Get|Set)LibraryStaticLibraryFileName.
+% The static library file name of the library.
+% Example: "arithmetic-functors.hpp".
+\def\SetLibraryStaticLibraryFileName#1{\gdef\@libraryStaticLibraryFileName{#1}}
+\def\@libraryStaticLibraryFileName{\@latex@warning@no@line{No library static library file name given}}
+\def\GetLibraryStaticLibraryFileName{\@libraryStaticLibraryFileName}
+
 % "(Get|Set)LibraryVersion".
 % The version of the library.
 \def\SetLibraryVersion#1{\gdef\@libraryVersion{#1}}
@@ -35,16 +86,78 @@
 % "(Get|Set)LibraryRepository".
 % The repository (url) of the library.
 \def\SetLibraryRepository#1{\gdef\@libraryRepository{#1}}
-\def\@libraryrepository{\@latex@warning@no@line{No library repository given}}
+\def\@libraryRepository{\@latex@warning@no@line{No library repository given}}
 \def\GetLibraryRepository{\@libraryRepository}
+
+% "(Get|Set)DocumentType".
+% The document type of this document.
+\def\SetDocumentType#1{\gdef\@documentType{#1}}
+\def\@documentType{\@latex@warning@no@line{No document type given}}
+\def\GetDocumentType{\@documentType}
+
+\let\tableofcontentsORIG\tableofcontents
+\renewcommand\tableofcontents{\tableofcontentsORIG}
 
 % Define "maketitle".
 \def\maketitle{%
-  \noindent\makebox[\textwidth]{%
-	\uppercase{{\GetOrganization} {\GetLibraryName} {\GetLibraryVersion}}%
-	\hfill
-	\uppercase{{\GetAuthor} {(\href{mailto:\GetEmail}{\GetEmail})}}%
-  }%
+  \thispagestyle{empty}
+  \begin{centering}
+
+  \vspace*{6.0\baselineskip} % White space at the top of the page
+
+  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  % TITLE
+  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+  \rule{\textwidth}{1.6pt}\vspace*{-\baselineskip}\vspace*{2pt} % Thick horizontal rule
+  \rule{\textwidth}{0.4pt} % Thin horizontal rule
+
+  \vspace{0.75\baselineskip} % Whitespace above the title
+
+  {\normalsize\uppercase{\GetOrganization{}}}\\
+  \vspace{1\baselineskip} % For some reason the lines are overlapping.
+  {\LARGE\uppercase{\GetLibraryName} \uppercase{\GetLibraryVersion}}
+
+  \vspace{0.75\baselineskip} % Whitespace below the title
+
+  \rule{\textwidth}{0.4pt}\vspace*{-\baselineskip}\vspace{3.2pt} % Thin horizontal rule
+  \rule{\textwidth}{1.6pt} % Thick horizontal rule
+
+  \vspace{2\baselineskip} % Whitespace after the title block
+
+  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  % SUBTITLE
+  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+  \vspace{2\baselineskip} % Whitespace after the title block
+
+  \GetDocumentType % Subtitle or further description
+
+  \vspace*{3\baselineskip} % Whitespace under the subtitle
+
+  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  % EDITORS
+  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+  \vspace*{1\baselineskip} % Whitespace before editors
+
+  Edited By
+
+  \vspace{0.5\baselineskip} % Whitespace before the editors
+
+  {\scshape\Large \GetAuthor \\
+  {\normalsize(\href{mailto:\GetEmail}{\GetEmail})} \\} % Editor list
+
+  \end{centering}
+
+  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  % Footer
+  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  \vspace*{\fill} % Whitespace before the editors
+  \begin{tabularx}{\columnwidth}{m{0.75cm}m{4.75cm}X}
+  \multirow{2}{=}{\includegraphics[scale=0.05]{primordialmachine-135x135.png}} & Primordial Machine                                                  & \hfill Created with \LaTeX\\
+                                                                               & \href{https://primordialmachine.com}{https://primordialmachine.com} & \hfill Compiled on \today\ at \currenttime
+  \end{tabularx}
 }
 
 \makeatother

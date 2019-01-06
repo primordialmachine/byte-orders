@@ -1,28 +1,40 @@
-\documentclass[oneside]{article}
-\usepackage[utf8]{inputenc}
-\usepackage{color}
-\usepackage{microtype}
-\usepackage{graphicx}
-\usepackage[colorlinks]{hyperref}
-\usepackage{listings}
-\usepackage[margin=0.75in]{geometry}
-\usepackage{amsmath,amssymb,amsfonts}
+\documentclass[oneside]{book}
 
 \input{common}
+\usepackage{listings}
 
 \SetOrganization{Primordial Machine's}
 \SetLibraryName{Byte Orders Library}
-\SetLibraryVersion{v1.3}
+
+\SetLibraryIncludeFileName{include.hpp}
+\SetLibraryIncludesDirectoryPath{primordialmachine/byte-orders/\newline\$(PlatformTarget.toLower())/\$(Configuration.toLower())/includes}
+
+\SetLibraryIncludeDirectiveFilePath{primordialmachine/byte\_orders/include.hpp}
+
+\SetLibraryVersion{v1.4}
 \SetLibraryRepository{https://github.com/primordialmachine/byte-orders}
 \SetAuthor{Michael Heilmann}
 \SetEmail{michaelheilmann@primordialmachine.com}
+
+\SetDocumentType{User Manual}
 
 \begin{document}
 \lstset{language=C++,
   basicstyle=\footnotesize, % reduce the font size.
   showstringspaces=false    % do not display "squat-u" for whitespace.
 }
+
+\frontmatter
+
+\begin{titlepage}
 \maketitle
+\end{titlepage}
+
+\tableofcontents
+\addtocontents{toc}{\protect\thispagestyle{empty}}
+\pagenumbering{gobble}
+
+\mainmatter
 
 \section{Synopsis}
 C++ 17 library providing Byte order detection. 
@@ -71,38 +83,7 @@ int main(int argc, char **argv) {
 \end{lstlisting}
 If the Byte order can not be determined, a compile-time error is raised i.e. the program will not compile.
 
-\section{Building under Visual Studio 2017}
-\begin{enumerate}
-\item Open the solution \texttt{solution.sln} in Microsoft Visual Studio 2017.
-\item Batch build everything.
-\item The folder \verb+packages+ contains the distribution of the library i.e. include files and the
-      static libraries for
-  \begin{enumerate}
-    \item the platforms \verb+Win32+ and \verb+x64+ and
-    \item configurations \verb+Release+ and \verb+Debug+.
-  \end{enumerate}
-\item Copy the contents of the `packages` folder into a directory. Let
-      \verb+[library home]+ be a placeholder denoting the path by which that folder
-      can be referenced from your project. 
-\item Add
-  \begin{enumerate}
-    \item the include path
-\begin{verbatim}
-[library home]/primordialmachine/byte-orders/
-$(PlatformTarget.toLower())/$(Configuration.toLower())/includes
-\end{verbatim}
-	and
-    \item the library path
-\begin{verbatim}
-[library home]/primordialmachine/byte-orders/
-$(PlatformTarget.toLower())/$(Configuration.toLower())/libraries
-\end{verbatim}
-    to your project.
-\end{enumerate}
-\item Link your project with the library \verb+byte-orders.lib+.
-\item Add the include directive \lstinline{#include "primordialmachine/byte_orders/include.hpp"} where appropriate.
-\item You can now use the functionality provided by the library.
-\end{enumerate}
+\input{building_visual_studio_2017}
 
 \section{Library Interface Documentation}
 \subsection{\texttt{namespace primordialmachine}}
