@@ -42,22 +42,22 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <OutDir>$(SolutionDir)products\$(ProjectName)\$(PlatformTarget.toLower())\$(Configuration.toLower())\</OutDir>
     <IntDir>$(SolutionDir)intermediates\$(ProjectName)\$(PlatformTarget.toLower())\$(Configuration.toLower())\</IntDir>
-    <TargetName>constants-test</TargetName>
+    <TargetName>byte-orders-test</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <OutDir>$(SolutionDir)products\$(ProjectName)\$(PlatformTarget.toLower())\$(Configuration.toLower())\</OutDir>
     <IntDir>$(SolutionDir)intermediates\$(ProjectName)\$(PlatformTarget.toLower())\$(Configuration.toLower())\</IntDir>
-    <TargetName>constants-test</TargetName>
+    <TargetName>byte-orders-test</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <OutDir>$(SolutionDir)products\$(ProjectName)\$(PlatformTarget.toLower())\$(Configuration.toLower())\</OutDir>
     <IntDir>$(SolutionDir)intermediates\$(ProjectName)\$(PlatformTarget.toLower())\$(Configuration.toLower())\</IntDir>
-    <TargetName>constants-test</TargetName>
+    <TargetName>byte-orders-test</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <OutDir>$(SolutionDir)products\$(ProjectName)\$(PlatformTarget.toLower())\$(Configuration.toLower())\</OutDir>
     <IntDir>$(SolutionDir)intermediates\$(ProjectName)\$(PlatformTarget.toLower())\$(Configuration.toLower())\</IntDir>
-    <TargetName>constants-test</TargetName>
+    <TargetName>byte-orders-test</TargetName>
   </PropertyGroup>
   <ItemGroup>
     <ClCompile Include="sources\byte_orders.cpp" />
