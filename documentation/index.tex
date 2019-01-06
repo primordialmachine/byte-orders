@@ -61,18 +61,18 @@
 
 \mainmatter
 
-\section{Synopsis}
+\chapter{Synopsis}
 C++ 17 library providing Byte order detection. 
 The library is made available publicly on 
 \href{\GetLibraryRepository}{Github}
 under the
 \href{\GetLibraryRepository/blob/master/LICENSE}{MIT License}.
 
-\section{Limitations and Restrictions}
+\chapter{Limitations and Restrictions}
 The library officially only supports Visual Studio 2017 and Windows 10.
 The Byte Order for Windows 10 is always Little Endian.
 
-\section{Introductory example}
+\chapter{Introductory example}
 The following program determines the Byte order and prints the result.
 %The folder \href{\GetLibraryRepository/blob/master/example} contains example programs.
 
@@ -110,12 +110,12 @@ If the Byte order can not be determined, a compile-time error is raised i.e. the
 
 \input{building_visual_studio_2017}
 
-\section{Library Interface Documentation}
-\subsection{\texttt{namespace primordialmachine}}
+\chapter{Library Interface Documentation}
+\section{\texttt{namespace primordialmachine}}
 The namespace this library is adding its declarations/definitions to.
 The added namespace elements are documented below.
 
-\subsection{\texttt{enum class byte\_order}}
+\section{\texttt{enum class byte\_order}}
 An enum class of the Byte orders known to this library.
 The contained enum class elements are documented below.
 \begin{enumerate}
@@ -123,7 +123,7 @@ The contained enum class elements are documented below.
 \item \texttt{big\_endian} enum class element denoting Big Endian Byte order.
 \end{enumerate}
 
-\subsection{\texttt{byte\_order get\_byte\_order()}}
+\section{\texttt{byte\_order get\_byte\_order()}}
 A parameterless constant expression function getting the target environment's Byte order. It returns
 a value of type \lstinline{byte_order} denoting the target environment's Byte order.     If the Byte
 order can not be determined, a compile-time error is raised i.e. the program will not       compile.
