@@ -13,7 +13,6 @@
   <ItemGroup>
     <BuildMacro Include="PackageName">
       <Value>$(PackageName)</Value>
-      <EnvironmentVariable>true</EnvironmentVariable>
     </BuildMacro>
     <BuildMacro Include="BuildDir">
       <Value>$(BuildDir)</Value>

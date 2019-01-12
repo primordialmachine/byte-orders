@@ -1,7 +1,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
-% Primordial Machine's Byte Orders Library
-% Copyright (C) 2017-2019 Michael Heilmann
+% Primordial Machine Byte Orders Library
+% Copyright (c) 2017-2019 Michael Heilmann <michaelheilmann@primordialmachine.com>
 %
 % This software is provided 'as-is', without any express or implied warranty.
 % In no event will the authors be held liable for any damages arising from the
@@ -24,8 +24,15 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \usepackage[utf8]{inputenc}
+%
+\usepackage{xparse}
+\setcounter{tocdepth}{4} % Include subsubsections into ToC.
+\setcounter{secnumdepth}{4} % Number subsubsection.
+%
 \usepackage{textcomp} % for \textlangle and \textrangle macros
 \usepackage{xcolor}
+%
+\usepackage{xifthen}
 %
 \usepackage{datetime}
 %
@@ -39,6 +46,8 @@
 \usepackage[colorlinks]{hyperref}
 \usepackage[margin=0.75in]{geometry}
 \usepackage{amsmath,amssymb,amsfonts}
+
+\setlength{\parindent}{0pt} % Disable paragraph indention.
 
 \makeatletter
 
@@ -138,7 +147,7 @@
 
   \vspace{0.75\baselineskip} % Whitespace above the title
 
-  {\normalsize\uppercase{\GetOrganization{}}}\\
+  {\normalsize\uppercase{\GetOrganization{}}'s}\\
   \vspace{1\baselineskip} % For some reason the lines are overlapping.
   {\LARGE\uppercase{\GetLibraryName} \uppercase{\GetLibraryVersion}}
 

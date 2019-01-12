@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ImportGroup Label="PropertySheets" />
+  <PropertyGroup Label="UserMacros">
+    <BuildDir>$(SolutionDir)build\</BuildDir>
+    <PackageTargetDir>$(BuildDir)packages\primordialmachine\$(PackageName)\$(PlatformTarget.toLower())\$(Configuration.toLower())\</PackageTargetDir>
+    <PackageSourceDir>$(ProjectDir)</PackageSourceDir>
+  </PropertyGroup>
+  <PropertyGroup>
+    <_PropertySheetDisplayName>Commons</_PropertySheetDisplayName>
+    <OutDir>$(BuildDir)products\$(ProjectName)\$(PlatformTarget.toLower())\$(Configuration.toLower())\</OutDir>
+    <IntDir>$(BuildDir)intermediates\$(ProjectName)\$(PlatformTarget.toLower())\$(Configuration.toLower())\</IntDir>
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup>
+    <ClCompile>
+      <CompileAsManaged>false</CompileAsManaged>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup>
+    <ClCompile>
+      <CompileAsWinRT>false</CompileAsWinRT>
+      <ConformanceMode>true</ConformanceMode>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <OpenMPSupport>false</OpenMPSupport>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
+      <EnableModules>false</EnableModules>
+      <CreateHotpatchableImage>false</CreateHotpatchableImage>
+      <UseUnicodeForAssemblerListing>true</UseUnicodeForAssemblerListing>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <EnforceTypeConversionRules>true</EnforceTypeConversionRules>
+      <DisableLanguageExtensions>true</DisableLanguageExtensions>
+      <FunctionLevelLinking>false</FunctionLevelLinking>
+      <SDLCheck>false</SDLCheck>
+      <BufferSecurityCheck>false</BufferSecurityCheck>
+      <ControlFlowGuard>false</ControlFlowGuard>
+      <WarningLevel>Level3</WarningLevel>
+    </ClCompile>
+    <Link>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <BuildMacro Include="BuildDir">
+      <Value>$(BuildDir)</Value>
+    </BuildMacro>
+    <BuildMacro Include="PackageTargetDir">
+      <Value>$(PackageTargetDir)</Value>
+    </BuildMacro>
+    <BuildMacro Include="PackageSourceDir">
+      <Value>$(PackageSourceDir)</Value>
+    </BuildMacro>
+  </ItemGroup>
+</Project>

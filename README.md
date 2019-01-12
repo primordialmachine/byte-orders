@@ -1,5 +1,5 @@
-# Primordial Machine's Byte Order Library
-C++ 17 library providing Byte order detection. 
+# Primordial Machine's Byte Orders Library
+C++ 17 library providing Byte orders detection. 
 The library is made available publicly on [GitHub](https://github.com/primordialmachine/byte-orders) under the [MIT License](https://github.com/primordialmachine/byte-orders/blob/master/LICENSE).
 
 ## Restrictions

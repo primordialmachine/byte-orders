@@ -1,0 +1,62 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% Primordial Machine Byte Orders Library
+% Copyright (c) 2017-2019 Michael Heilmann <michaelheilmann@primordialmachine.com>
+%
+% This software is provided 'as-is', without any express or implied warranty.
+% In no event will the authors be held liable for any damages arising from the
+% use of this software.
+%
+% Permission is granted to anyone to use this software for any purpose,
+% including commercial applications, and to alter it and redistribute it
+% freely, subject to the following restrictions:
+%
+% 1. The origin of this software must not be misrepresented;
+%    you must not claim that you wrote the original software.
+%    If you use this software in a product, an acknowledgment
+%    in the product documentation would be appreciated but is not required.
+%
+% 2. Altered source versions must be plainly marked as such,
+%    and must not be misrepresented as being the original software.
+%
+% 3. This notice may not be removed or altered from any source distribution.
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Evaluates to the current level we're at.
+% 1 = chapter, 1 = section, 2 = subsection, 3 = subsubsection, 4 = paragraph, 0 otherwise.
+\def\determinecurrentlevel{%
+  \numexpr
+    \ifnum\value{chapter}>0 1+\fi
+    \ifnum\value{section}>0 1+\fi
+    \ifnum\value{subsection}>0 1+\fi
+    \ifnum\value{subsubsection}>0 1+\fi
+    \ifnum\value{paragraph}>0 1+\fi
+  0\relax}
+
+% Add a headline at the current section level + 0.
+\newcommand{\sibling}[1]{%
+  \ifthenelse{\determinecurrentlevel=1}{\chapter{#1}}{%
+	\ifthenelse{\determinecurrentlevel=2}{\section{#1}}{%
+		\ifthenelse{\determinecurrentlevel=3}{\subsection{#1}}{%
+			\ifthenelse{\determinecurrentlevel=4}{\subsubsection{#1}}{%
+				\ifthenelse{\determinecurrentlevel=5}{\PackageError{mypackage}{unable to add sibling}{}}}}}}}
+
+% Add a headline at the current section level + 1.
+\newcommand{\child}[1]{%
+  \ifthenelse{\determinecurrentlevel=1}{\section{#1}}{%
+	\ifthenelse{\determinecurrentlevel=2}{\subsection{#1}}{%
+		\ifthenelse{\determinecurrentlevel=3}{\subsubsection{#1}}{%
+			\ifthenelse{\determinecurrentlevel=4}{\paragraph{#1}}{%
+				\ifthenelse{\determinecurrentlevel=5}{\PackageError{mypackage}{unable to add child}{}}}}}}}
+
+% Macro to emit the is_* and is_*_v definitions which are used by e.g. angle, color, matrix, point, and vector types.
+\newcommand{\Isa}[1]{%
+%
+\sibling{\texttt{is\_#1} (struct type)}
+Derives from \texttt{true\_type} is the specified type is a #1 type, derives from \texttt{false\_type} otherwise.\newline%
+%
+\child{\texttt{is\_#1\_v} (helper variable template)}%
+\texttt{template \textlangle typename TYPE\textrangle\newline%
+inline constexpr bool is\_#1\_v = is\_#1\textlangle TYPE\textrangle::value;}%
+}

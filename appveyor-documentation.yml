@@ -71,12 +71,10 @@ branches:
     - master
 
 platform:
-  - x86
-  - x64
+  - documentation
 
 configuration:
-  - Debug
-  - Release
+  - Documentation
 
 environment:
   # Environment variables pertaining to the organization and package.
@@ -88,15 +86,15 @@ environment:
   PACKAGE_NAME: "Byte Orders"
   # Package category.
   PACKAGE_CATEGORY: "library"
-  # Environment variables pertaining to GoogleTestAdapter.
-  GOOGLETESTADAPTER_FILENAME : "GoogleTestAdapter-0.14.0.vsix"
-  GOOGLETESTADAPTER_URL : "https://github.com/csoltenborn/GoogleTestAdapter/releases/download/v0.14.0/GoogleTestAdapter-0.14.0.vsix"
-  GOOGLETESTADAPTER_INSTALL_PATH : "C:\\Program Files (x86)\\Microsoft Visual Studio\\2017\\Community\\Common7\\IDE\\GoogleTestAdapter-0.14.0"
+  # Environment variables pertaining to MikTex.
+  MIKTEX_FILENAME : "miktex-portable-2.9.6942.exe"
+  MIKTEX_URL : "https://miktex.org/download/ctan/systems/win32/miktex/setup/windows-x86/miktex-portable-2.9.6942.exe"
+  MIKTEX_INSTALL_PATH : "C:\\miktex"
 
 cache:
-  # Cache archive and installation of GoogleTestAdapter.
-  - "%GOOGLETESTADAPTER_FILENAME% -> appveyor-develop.yml"
-  - "%GOOGLETESTADAPTER_INSTALL_PATH% -> appveyor-develop.yml"
+  # Cache archive and installation of MikTex.
+  - "%MIKTEX_FILENAME% -> appveyor-develop.yml"
+  - "%MIKTEX_INSTALL_PATH% -> appveyor-develop.yml"
 
 install:
   # If repo tag of the proper format is given, extract the version number.
@@ -104,42 +102,35 @@ install:
       if ($env:APPVEYOR_REPO_TAG -and $($env:APPVEYOR_REPO_TAG_NAME -match "version_[0-9][0-9]*\.[0-9][0-9]*")) {
         $env:version = $env:appveyor_repo_tag_name -replace "version_", ""
       }
-  # Download and install GoogleTestAdapter.
+  # Download and install MikTex.
   # Use cached archives/installations if possible.
-  - IF NOT EXIST "%GOOGLETESTADAPTER_FILENAME%" (appveyor DownloadFile "%GOOGLETESTADAPTER_URL%" -FileName "%GOOGLETESTADAPTER_FILENAME%")
-  - IF EXIST "%GOOGLETESTADAPTER_INSTALL_PATH%" (ECHO "using cached GoogleTestAdapter")
-  - IF NOT EXIST "%GOOGLETESTADAPTER_INSTALL_PATH%" (7z x "%GOOGLETESTADAPTER_FILENAME%" -o"%GOOGLETESTADAPTER_INSTALL_PATH%" > nul)
+  - IF NOT EXIST "%MIKTEX_FILENAME%" (appveyor DownloadFile "%MIKTEX_URL%" -FileName "%MIKTEX_FILENAME%")
+  - IF EXIST "%MIKTEX_INSTALL_PATH%" (ECHO "using cached MikTex")
+  - IF NOT EXIST "%MIKTEX_INSTALL_PATH%" (7z x "%MIKTEX_FILENAME%" -o"%MIKTEX_INSTALL_PATH%" > nul)
+  - set "PATH=%PATH%;%MIKTEX_INSTALL_PATH%\texmfs\install\miktex\bin"
+  - initexmf --set-config-value "[MPM]AutoInstall=1"
 
 before_build:
-  - nuget restore         # Restore NuGet packages.
   - ps: |
       if (Test-Path env:version) {
-        $env:ARTIFACT_NAME="$($env:ORGANIZATION_CANONICAL_NAME.tolower())-$($env:PACKAGE_CANONICAL_NAME.tolower())-v$($env:version.tolower())-$($env:configuration.tolower())-$($env:platform.tolower())"
+        $env:ARTIFACT_NAME="$($env:ORGANIZATION_CANONICAL_NAME.tolower())-$($env:PACKAGE_CANONICAL_NAME.tolower())-v$($env:version.tolower())"
       } else {
-        $env:ARTIFACT_NAME="$($env:ORGANIZATION_CANONICAL_NAME.tolower())-$($env:PACKAGE_CANONICAL_NAME.tolower())-$($env:configuration.tolower())-$($env:platform.tolower())"
+        $env:ARTIFACT_NAME="$($env:ORGANIZATION_CANONICAL_NAME.tolower())-$($env:PACKAGE_CANONICAL_NAME.tolower())"
       }
-      $env:ARTIFACT_FILENAME="$($env:ARTIFACT_NAME).zip"
+      $env:ARTIFACT_FILENAME="$($env:ARTIFACT_NAME).pdf"
 
 build_script:
-  - ps: |
-      msbuild solution.sln /logger:"C:\Program Files\AppVeyor\BuildAgent\Appveyor.MSBuildLogger.dll"
+  - cmd: |
+      cd documentation
+      latexmk -f -pdf index.tex
+      cd ..
 
 after_build:
    - ps: |
-       cd build/packages
-       7z a $env:ARTIFACT_FILENAME $($env:ORGANIZATION_CANONICAL_NAME.tolower())
-       Move-Item -Path ./$env:ARTIFACT_FILENAME -Destination ./../../$env:ARTIFACT_FILENAME
-       cd ..
-       cd ..
+       Move-Item -Path documentation/index.pdf -Destination ./$env:ARTIFACT_FILENAME
 
 test_script:
-  - ps: |
-      $logger="Appveyor"
-      $configuration=$env:configuration
-      $platform=$env:platform
-      $testAdapterPath="C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\IDE\GoogleTestAdapter-0.14.0"
-      $testPath="build\products\test\$platform\$configuration\$($env:PACKAGE_CANONICAL_NAME.tolower())-test.exe"
-      vstest.console /Logger:$logger /Platform:$platform /TestAdapterPath:$testAdapterPath /inIsolation $testPath
+  # Intentionally empty.
 
 artifacts:
   - path: $(ARTIFACT_FILENAME)

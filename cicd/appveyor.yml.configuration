@@ -1,0 +1,13 @@
+"CanonicalOrganizationName" : "primordialmachine",
+"OrganizationName" : "Primordial Machine",
+
+"CanonicalPackageName" : "byte-orders",
+"PackageName" : "Byte Orders",
+
+"AuthorName" : "Michael Heilmann",
+"AuthorEmail" : "michaelheilmann@primordialmachine.com",
+"CopyrightFrom" : "2017",
+"CopyrightTo" : "2019",
+
+"CanonicalPackageTypeName": "library",
+"PackageTypeName" : "Library",
